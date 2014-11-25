@@ -1,12 +1,8 @@
 (ns calculator.functions-test
   (:require [clojure.test :refer :all]
             [calculator.helpers :refer :all]
-            [calculator.functions :refer :all]))
-
-(def P 3)
-
-(defmacro test-rounded [expected actual]
-  `(is (= (round ~expected P) (round ~actual P))))
+            [calculator.functions :refer :all]
+            [calculator.common :refer :all]))
 
 (deftest power-test
   (testing "Power"
@@ -27,16 +23,6 @@
     (is (= (factorial 2) 2))
     (is (= (factorial 5) 120))))
 
-(deftest sin-test
-  (testing "Sine"
-    (def angle (/ Math/PI 6))
-    (test-rounded (sin angle) (Math/sin angle))))
-
-(deftest cos-test
-  (testing "Cosine"
-    (def angle (/ Math/PI 6))
-    (test-rounded (cos angle) (Math/cos angle))))
-
 (deftest exp-test
   (testing "Exponent"
     (test-rounded (exp 0) (Math/exp 0))
@@ -53,3 +39,39 @@
   (testing "Ln from 0 to 1"
     (test-rounded (ln 0.2) (Math/log 0.2))
     (test-rounded (ln 0.5) (Math/log 0.5))))
+
+(deftest sin-test
+  (testing "Sine"
+    (def angle (/ Math/PI 6))
+    (test-rounded (sin angle) (Math/sin angle))
+    (def angle (/ Math/PI 4))
+    (test-rounded (sin angle) (Math/sin angle))
+    (def angle (/ Math/PI 2))
+    (test-rounded (sin angle) (Math/sin angle))))
+
+(deftest sinh-test
+  (testing "Sine"
+    (def angle (/ Math/PI 6))
+    (test-rounded (sinh angle) (Math/sinh angle))
+    (def angle (/ Math/PI 4))
+    (test-rounded (sinh angle) (Math/sinh angle))
+    (def angle (/ Math/PI 2))
+    (test-rounded (sinh angle) (Math/sinh angle))))
+
+(deftest cos-test
+  (testing "Cosine"
+    (def angle (/ Math/PI 6))
+    (test-rounded (cos angle) (Math/cos angle))
+    (def angle (/ Math/PI 4))
+    (test-rounded (cos angle) (Math/cos angle))
+    (def angle (/ Math/PI 2))
+    (test-rounded (cos angle) (Math/cos angle))))
+
+(deftest cosh-test
+  (testing "Cosine"
+    (def angle (/ Math/PI 6))
+    (test-rounded (cosh angle) (Math/cosh angle))
+    (def angle (/ Math/PI 4))
+    (test-rounded (cosh angle) (Math/cosh angle))
+    (def angle (/ Math/PI 2))
+    (test-rounded (cosh angle) (Math/cosh angle))))

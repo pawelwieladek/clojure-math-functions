@@ -1,6 +1,7 @@
 (ns calculator.helpers-test
   (:require [clojure.test :refer :all]
-            [calculator.helpers :refer :all]))
+            [calculator.helpers :refer :all]
+            [calculator.common :refer :all]))
 
 (deftest abs-test
   (testing "Absolute value"

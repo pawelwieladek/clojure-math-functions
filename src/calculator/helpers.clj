@@ -1,6 +1,9 @@
 (ns calculator.helpers
   (:gen-class))
 
+(def PRECISION 10e-15)
+(def STACK_SIZE 10e2)
+
 ; Helpers
 (defn abs
   [x]

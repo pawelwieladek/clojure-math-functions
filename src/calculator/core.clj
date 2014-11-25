@@ -7,4 +7,4 @@
 (defn -main
   "Clojure Calculator"
   [& args]
-  (println "Clojure Calculator. See more in tests."))
+  (println "Clojure Calculator"))
