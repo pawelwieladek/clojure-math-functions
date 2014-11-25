@@ -2,6 +2,11 @@
   (:require [clojure.test :refer :all]
             [calculator.core :refer :all]))
 
+(def P 3)
+
+(defmacro test-rounded [expected actual]
+  `(is (= (round ~expected P) (round ~actual P))))
+
 (deftest abs-test
   (testing "Absolute value"
     (is (= (abs 0) 0))
@@ -10,10 +15,10 @@
 
 (deftest round-test
   (testing "Round"
-    (is (= (round 0.1234 3) 0.123))
-    (is (= (round 0.1234 2) 0.12))
-    (is (= (round 0.1234 1) 0.1))
-    (is (= (round 0.1234 0) 0.0))))
+    (is (= (round 0.1357 3) 0.135))
+    (is (= (round 0.1357 2) 0.13))
+    (is (= (round 0.1357 1) 0.1))
+    (is (= (round 0.1357 0) 0.0))))
 
 (deftest power-test
   (testing "Power"
@@ -25,8 +30,8 @@
 (deftest sqrt-test
   (testing "Square root"
     (is (= (sqrt 1) 1.0))
-    (is (= (sqrt 2) 1.414213562373095))
-    (is (= (sqrt 9) 3.0))))
+    (is (= (sqrt 9) 3.0))
+    (test-rounded (sqrt 2) (Math/sqrt 2))))
 
 (deftest factorial-test
   (testing "Factorial"
@@ -36,17 +41,19 @@
 
 (deftest sin-test
   (testing "Sine"
-    (is (= (sin (/ Math/PI 3)) 0.8660254037844385))))
+    (def angle (/ Math/PI 6))
+    (test-rounded (sin angle) (Math/sin angle))))
 
 (deftest cos-test
   (testing "Cosine"
-    (is (= (cos (/ Math/PI 6)) 0.8660254037844386))))
+    (def angle (/ Math/PI 6))
+    (test-rounded (cos angle) (Math/cos angle))))
 
 (deftest exp-test
   (testing "Exponent"
-    (is (= (exp 0) 1.0))
-    (is (= (exp 1) 2.7182818284590455))
-    (is (= (exp 2) 7.3890560989306495))))
+    (test-rounded (exp 0) (Math/exp 0))
+    (test-rounded (exp 1) (Math/exp 1))
+    (test-rounded (exp 2) (Math/exp 2))))
 
 (deftest binomial-test
   (testing "Binomial"
@@ -56,5 +63,5 @@
 
 (deftest ln-test
   (testing "Ln from 0 to 1"
-    (is (= (ln 0.2) -1.6094379124341007))
-    (is (= (ln 0.5) -0.6931471805599453))))
+    (test-rounded (ln 0.2) (Math/log 0.2))
+    (test-rounded (ln 0.5) (Math/log 0.5))))
