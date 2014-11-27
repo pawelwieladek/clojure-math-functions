@@ -9,18 +9,21 @@
     (is (= (power 2 0) 1))
     (is (= (power 0 2) 0))
     (is (= (power 2 2) 4))
-    (is (= (power 5 3) 125))))
+    (is (= (power 5 3) 125))
+    (is (= (power (+ 1 1) (* 2 3)) 64))))
 
 (deftest sqrt-test
   (testing "Square root"
     (is (= (sqrt 1) 1.0))
     (is (= (sqrt 9) 3.0))
+    (is (= (sqrt (* 7 7)) 7.0))
     (test-rounded (sqrt 2) (Math/sqrt 2))))
 
 (deftest factorial-test
   (testing "Factorial"
     (is (= (factorial 0) 1))
     (is (= (factorial 2) 2))
+    (is (= (factorial (+ 1 2)) 6))
     (is (= (factorial 5) 120))))
 
 (deftest exp-test
@@ -33,6 +36,7 @@
   (testing "Binomial"
     (is (= (binomial 5 2) 10))
     (is (= (binomial 3 2) 3))
+    (is (= (binomial (- 5 2) (+ 1 1)) 3))
     (is (= (binomial 2 2) 1))))
 
 (deftest ln-test

@@ -5,16 +5,16 @@
 (defmacro power-macro
   "Power of x to y"
   [x y]
-  (if (> y 0) `(* ~x (power-macro ~x ~(dec y))) `1))
+  (if (> (eval y) 0) `(* ~x (power-macro ~x (dec ~y))) 1))
 
 (defmacro factorial-macro
   "Factorial of value x"
   [x]
-  (if (> x 1) `(* ~x (factorial-macro ~(dec x))) `1))
+  (if (> (eval x) 1) `(* ~x (factorial-macro (dec ~x))) 1))
 
 (defmacro binomial-macro [a n]
   "Binomial of values a and n"
-  (if (>= n 1) `(* (/ (+ (- ~a ~n) 1) ~n) (binomial-macro ~a ~(dec n))) `1))
+  (if (>= (eval n) 1) `(* (/ (+ (- ~a ~n) 1) ~n) (binomial-macro ~a (dec ~n))) 1))
 
 (defmacro sqrt-macro
   "Square root of value x"
